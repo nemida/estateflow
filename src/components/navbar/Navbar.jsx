@@ -1,7 +1,11 @@
 import "./navbar.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 function Navbar() {
   const [open, setOpen] = useState(false);
+
+  const user = true;
+
   return (
     <nav>
       <div className="left">
@@ -15,10 +19,23 @@ function Navbar() {
         <a href="/">Agents</a>
       </div>
       <div className="right">
-        <a href="/">Sign in</a>
-        <a href="/" className="register">
-          Sign up
-        </a>
+        {user ? (
+          <div className="user">
+            <img src="logo.png" alt="" />
+            <span>John Doe</span>
+            <Link to="/profile" className="profile">
+              <div className="notification">3</div>
+              <span>Profile</span>
+            </Link>
+          </div>
+        ) : (
+          <>
+            <a href="/">Sign in</a>
+            <a href="/" className="register">
+              Sign up
+            </a>
+          </>
+        )}
       </div>
       <div className="menuIcon">
         <img src="/menu.png" alt="" onClick={() => setOpen((prev) => !prev)} />
